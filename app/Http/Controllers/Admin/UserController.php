@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
@@ -24,7 +25,7 @@ class UserController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Response
      */
     public function create(Request $request) {
         return view('admin.form-user', [
@@ -36,7 +37,7 @@ class UserController extends Controller
     /**
      * @param Request $request
      * @param User $user
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     * @return Response
      */
     public function edit(Request $request, User $user) {
         return view('admin.form-user', [
@@ -48,7 +49,7 @@ class UserController extends Controller
     /**
      * @param Request $request
      * @param null $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Response
      */
     public function store(Request $request, $id=null) {
 
@@ -59,7 +60,7 @@ class UserController extends Controller
             'email'  => 'required|unique:users,email,'.$id.'|max:255'
         ]);
 
-        //TODO - sanitize inputs before add values to DB
+        //TODO - sanitize inputs before adding values to DB
         $user = [
             'name'   => $request->input('name'),
             'email'  => $request->input('email')
@@ -80,7 +81,11 @@ class UserController extends Controller
         return redirect($this->redirectTo);
     }
 
-    public function delete($id) {
+    public function delete(Request $request, User $user) {
 
+        // TODO - authorize
+        $user->delete();
+
+        return redirect($this->redirectTo);
     }
 }

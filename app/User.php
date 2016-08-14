@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Jenssegers\Mongodb\Eloquent\HybridRelations;
 
 class User extends Authenticatable
 {
+    use HybridRelations;
+
+    protected $connection = 'mysql';
+
     /**
      * The attributes that are mass assignable.
      *

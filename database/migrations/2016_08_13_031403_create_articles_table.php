@@ -12,7 +12,7 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::connection('mongodb')->create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('subtitle');
@@ -29,6 +29,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('articles');
+        Schema::connection('mongodb')->drop('articles');
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
+//use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Article extends Model
 {
+
+    //protected $connection = 'mongodb';
 
 
     protected $fillable = ['title', 'subtitle', 'content'];

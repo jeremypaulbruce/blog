@@ -155,8 +155,13 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\JpbServiceProvider::class
+        App\Providers\JpbServiceProvider::class,
 
+        /**
+         * MongoDB
+         */
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class
     ],
 
     /*

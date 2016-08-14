@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Article;
 
 use App\Article;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class ArticleController extends Controller
 {
-
 
     protected $redirectTo = '/';
 
@@ -20,10 +20,10 @@ class ArticleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Response
      */
     public function index() {
-        return view('/articles/list', [
+        return view('articles.list', [
             'articles' => Article::orderBy('created_at', 'desc')->get(),
             'isAdmin'  => false
         ]);
@@ -31,12 +31,12 @@ class ArticleController extends Controller
 
     /**
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     * @return Response
      */
     public function display($id) {
         try {
             $article = Article::findOrFail($id);
-            return view('/articles/view', [
+            return view('articles.view', [
                 'article' => $article
             ]);
         } catch (ModelNotFoundException $e) {

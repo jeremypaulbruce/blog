@@ -7,13 +7,12 @@ use App\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticlePostRequest;
-use Illuminate\Session\Store;
-use App\Providers\JpbServiceProvider;
+
 
 class ArticleController extends Controller
 {
 
-    protected $redirectTo = '/admin/articles';
+    protected $redirectTo = '/admin';
 
     /**
      * ArticleController constructor.
@@ -24,7 +23,7 @@ class ArticleController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Response
      */
     public function index(Request $request) {
         return view('admin.dashboard', [
@@ -36,7 +35,7 @@ class ArticleController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Response
      */
     public function create(Request $request) {
         return view('admin.form-article', [
@@ -48,7 +47,7 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      * @param Article $article
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     * @return Response
      */
     public function edit(Request $request, Article $article) {
         try {
@@ -65,7 +64,7 @@ class ArticleController extends Controller
      *
      * @param StoreArticlePostRequest $request
      * @param null $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Response
      */
     public function store(StoreArticlePostRequest $request, $id=null) {
 
@@ -98,7 +97,7 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      * @param Article $article
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Response
      */
     public function delete(Request $request, Article $article) {
 
