@@ -27,6 +27,7 @@ class ArticleController extends Controller
      */
     public function index(Request $request) {
         return view('admin.dashboard', [
+            'tags'      => Tag::orderBy('create_at', 'desc')->get(),
             'users'     => User::orderBy('created_at', 'desc')->get(),
             'articles'  => $request->user()->articles()->get(),
             'isAdmin'   => true
